@@ -26,9 +26,11 @@ Things you may want to cover:
 ## usersテーブル
 
 |Column  |Type  |Options    |
-|name    |string|null: false|
+|nickname|string|null: false|
 |email   |string|null: false|
 |password|string|null: false|
+|name    |string|null: false|
+|birth   |string|null: false|
 
 ### Association
 has_many :products
@@ -36,32 +38,39 @@ has_many :purchase
 
 ## productsテーブル
 
-|Column  |Type  |Options    |
-|stock   |string|null: false|
-|category|text  |null: false|
-|price   |text  |null: false|
-|seller  |string|null: false|
+|Column      |Type   |Options    |
+|stock       |string |null: false|
+|explanation |text   |null: false|
+|condition_id|integer|null: false|
+|burden_id   |integer|null: false|
+|region_id   |integer|null: false|
+|until_id    |integer|null: false|
+|category_id |integer|null: false|
+|price       |string |null: false|
+|seller      |string |null: false|
 
 ### Association
-belongs_to :users
+belongs_to :user
 has_one : purchase
 
 ## purchaseテーブル
 
-|Column|Type|Options|
-|buyer |string|null: false|
-|goods |text  |null: false|
+|Column|Type  |Options                      |
+|buyer |string|null: false foreign_key: true|
+|goods |text  |null: false foreign_key: true|
 
 ### Association
-belongs_to :users
-belongs_to :products
+belongs_to :user
+belongs_to :product
 has_many :shipping
 
 ## shippingテーブル
 
 |Column     |Type  |Options    |
 |sender     |string|null: false|
-|information|text  |null: false|
+|address    |text  |null: false|
+|number     |string|null: false|
+
 
 
 ### Association
