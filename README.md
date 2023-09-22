@@ -25,51 +25,55 @@ Things you may want to cover:
 
 ## usersテーブル
 
-|Column  |Type  |Options    |
-|nickname|string|null: false|
-|email   |string|null: false|
-|password|string|null: false|
-|name    |string|null: false|
-|birth   |string|null: false|
+|Column            |Type     |Options                 |
+|nickname          |string   |null: false             |
+|email             |string   |null: false unique: true|
+|encrypted_password|string   |null: false             |
+|name1             |string   |null: false             |
+|name2             |string   |null: false             |
+|birth             |date     |null: false             |
 
 ### Association
 has_many :products
-has_many :purchase
+has_many :purchases
 
 ## productsテーブル
 
-|Column      |Type   |Options    |
-|stock       |string |null: false|
-|explanation |text   |null: false|
-|condition_id|integer|null: false|
-|burden_id   |integer|null: false|
-|region_id   |integer|null: false|
-|until_id    |integer|null: false|
-|category_id |integer|null: false|
-|price       |string |null: false|
-|seller      |string |null: false|
+|Column      |Type   |Options                      |
+|stock       |string |null: false                  |
+|explanation |text   |null: false                  |
+|condition_id|integer|null: false                  |
+|burden_id   |integer|null: false                  |
+|region_id   |integer|null: false                  |
+|until_id    |integer|null: false                  |
+|category_id |integer|null: false foreign_key: true|
+|price       |integer|null: false                  |
+
 
 ### Association
 belongs_to :user
 has_one : purchase
 
-## purchaseテーブル
+## purchasesテーブル
 
-|Column|Type  |Options                      |
-|buyer |string|null: false foreign_key: true|
-|goods |text  |null: false foreign_key: true|
+|Column   |Type  |Options     |
+|user_id  |string|null: false |
+|stock_id |text  |null: false |
 
 ### Association
 belongs_to :user
 belongs_to :product
-has_many :shipping
+has_one :shipping
 
-## shippingテーブル
+## shippingsテーブル
 
-|Column     |Type  |Options    |
-|sender     |string|null: false|
-|address    |text  |null: false|
-|number     |string|null: false|
+|Column        |Type  |Options    |
+|postcode      |string|null: false|
+|prefectures   |string|null: false|
+|municipalities|string|null: false|
+|address       |string|null: false|
+|building      |string|none       |
+|phone         |string|null: false|
 
 
 
