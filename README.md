@@ -42,25 +42,25 @@ has_many :purchases
 ## productsテーブル
 
 |Column       |Type     |Options                      |
-|stock        |string   |null: false                  |
+|item         |string   |null: false                  |
 |explanation  |text     |null: false                  |
 |condition_id |integer  |null: false                  |
 |burden_id    |integer  |null: false                  |
 |prefecture_id|integer  |null: false                  |
 |until_id     |integer  |null: false                  |
-|category_id  |integer  |null: false foreign_key: true|
+|category_id  |integer  |null: false                  |
 |price        |integer  |null: false                  |
-|seller       |reference|null: false foreign_key: true|
+|user         |reference|null: false foreign_key: true|
 
 ### Association
 belongs_to :user
-has_one : purchase
+has_one :purchase
 
 ## purchasesテーブル
 
-|Column|Type      |Options                      |
-|buyer |references|null: false foreign_key: true|
-|goods |references|null: false foreign_key: true|
+|Column |Type      |Options                      |
+|user   |references|null: false foreign_key: true|
+|product|references|null: false foreign_key: true|
 
 ### Association
 belongs_to :user
@@ -69,14 +69,14 @@ has_one :shipping
 
 ## shippingsテーブル
 
-|Column        |Type      |Options                      |
-|postcode      |string    |null: false                  |
-|prefectures   |string    |null: false                  |
-|municipalities|string    |null: false                  |
-|address       |string    |null: false                  |
-|building      |string    |                             |
-|phone         |string    |null: false                  |
-|history       |references|null: false foreign_key: true|
+|Column      |Type      |Options                      |
+|postcode    |string    |null: false                  |
+|prefecture  |string    |null: false                  |
+|municipality|string    |null: false                  |
+|address     |string    |null: false                  |
+|building    |string    |                             |
+|phone       |string    |null: false                  |
+|purchase    |references|null: false foreign_key: true|
 
 
 
