@@ -29,9 +29,9 @@ Things you may want to cover:
 |nickname          |string|null: false             |
 |email             |string|null: false unique: true|
 |encrypted_password|string|null: false             |
-|sur1              |string|null: false             |
+|family1           |string|null: false             |
 |name1             |string|null: false             |
-|sur2              |string|null: false             |
+|family2           |string|null: false             |
 |name2             |string|null: false             |
 |birth             |date  |null: false             |
 
@@ -69,14 +69,14 @@ has_one :shipping
 
 ## shippingsテーブル
 
-|Column      |Type      |Options                      |
-|postcode    |string    |null: false                  |
-|prefecture  |string    |null: false                  |
-|municipality|string    |null: false                  |
-|address     |string    |null: false                  |
-|building    |string    |                             |
-|phone       |string    |null: false                  |
-|purchase    |references|null: false foreign_key: true|
+|Column       |Type      |Options                      |
+|postcode     |string    |null: false                  |
+|prefecture_id|integer   |null: false                  |
+|municipality |string    |null: false                  |
+|address      |string    |null: false                  |
+|building     |string    |                             |
+|phone        |string    |null: false                  |
+|purchase     |references|null: false foreign_key: true|
 
 
 
