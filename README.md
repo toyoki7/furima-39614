@@ -39,7 +39,7 @@ Things you may want to cover:
 has_many :products
 has_many :purchases
 
-## productsテーブル
+## itemsテーブル
 
 |Column       |Type     |Options                      |
 |item         |string   |null: false                  |
@@ -56,7 +56,7 @@ has_many :purchases
 belongs_to :user
 has_one :purchase
 
-## purchasesテーブル
+## ordersテーブル
 
 |Column |Type      |Options                      |
 |user   |references|null: false foreign_key: true|
