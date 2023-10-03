@@ -67,6 +67,18 @@ RSpec.describe User, type: :model do
           @user.valid?
           expect(@user.errors.full_messages).to include('Password is invalid. Input half-width characters.')
         end
+        it '英字のみのパスワードは登録できない' do
+          @user.password = 'aaaaaa'
+          @user.password_confirmation = 'aaaaaa'
+          @user.valid?
+          expect(@user.errors.full_messages).to include('Password is invalid. Input half-width characters.')
+        end
+        it '数字のみのパスワードは登録できない' do
+          @user.password = '111111'
+          @user.password_confirmation = '111111'
+          @user.valid?
+          expect(@user.errors.full_messages).to include('Password is invalid. Input half-width characters.')
+        end
         it 'passwordとpassword_confirmationが不一致では登録できない' do
           @user.password = '123456'
           @user.password_confirmation = '1234567'
