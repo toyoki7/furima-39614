@@ -10,9 +10,8 @@ RSpec.describe Item, type: :model do
       it 'すべての値が正しく入力されていれば保存できること' do
         expect(@item).to be_valid
       end
-      it '' do
-      end
     end
+
     context '内容に問題がある場合' do
       it 'itemが空だと保存できないこと' do
         @item.item = ''
@@ -50,7 +49,7 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Until can't be blank")
       end
       it 'priceが空だと保存できないこと' do
-        @item.price = ''
+        @item.price = nil
         @item.valid?
         expect(@item.errors.full_messages).to include("Price can't be blank")
       end
@@ -70,7 +69,9 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include('Price must be less than or equal to 9999999')
       end
       it 'userが紐付いていないと保存できないこと' do
-
+        @item.user = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("User must exist")
       end
     end
   end

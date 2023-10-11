@@ -1,14 +1,13 @@
 const priceInput = document.getElementById("item-price");
+const addTaxDom = document.getElementById("add-tax-price");
+const profit = document.getElementById("profit");
+
 priceInput.addEventListener("input", () => {
-   const inputValue = parseFloat(priceInput.value); // 文字列から数値に変換
-   
-   const addTaxDom = document.getElementById("add-tax-price");
-   const taxValue = Math.floor(inputValue * 0.1); // 小数点を切り捨て
+   const inputValue = parseFloat(priceInput.value);
+
+   const taxValue = Math.floor(inputValue * 0.1);
    addTaxDom.innerHTML = taxValue;
 
-   const profit = document.getElementById("profit");
-   const profitValue = Math.floor(inputValue - taxValue); // 小数点を切り捨て
+   const profitValue = Math.floor(inputValue - taxValue);
    profit.innerHTML = profitValue;
-
-   console.log(inputValue);
 })
