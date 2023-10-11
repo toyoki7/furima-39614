@@ -36,8 +36,8 @@ Things you may want to cover:
 |birth             |date  |null: false             |
 
 ### Association
-has_many :products
-has_many :purchases
+has_many :items
+has_many :orders
 
 ## itemsテーブル
 
@@ -54,7 +54,7 @@ has_many :purchases
 
 ### Association
 belongs_to :user
-has_one :purchase
+has_one :order
 
 ## ordersテーブル
 
@@ -64,7 +64,7 @@ has_one :purchase
 
 ### Association
 belongs_to :user
-belongs_to :product
+belongs_to :item
 has_one :shipping
 
 ## shippingsテーブル
@@ -81,4 +81,4 @@ has_one :shipping
 
 
 ### Association
-belongs_to :purchase
+belongs_to :order
