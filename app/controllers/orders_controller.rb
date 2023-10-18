@@ -1,8 +1,9 @@
 class OrdersController < ApplicationController
-  before_action :authenticate_user!, except: :index
+  before_action :authenticate_user!, except: [:index, :new, :create]
   before_action :find_item, only: [:index, :new, :create]
-  before_action :check_seller, only: []
-
+  before_action :require_login, only: [:index, :new, :create]
+  before_action :check_seller, only: [:index, :new, :create]
+  
   def index
     gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
     @order_integration = OrderIntegration.new
@@ -41,5 +42,21 @@ class OrdersController < ApplicationController
       card: order_params[:token],    # カードトークン
       currency: 'jpy'                 # 通貨の種類（日本円）
     )
+  end
+
+  def require_login
+    unless user_signed_in?
+      redirect_to new_user_session_path, alert: "ログインが必要です。"
+    end
+  end
+
+  def check_seller
+    if current_user == @item.user
+      # 出品者としてログインしている場合
+      redirect_to root_path, alert: "出品者は購入できません。"
+    elsif @item.order.present?
+    # 商品が売却済みの場合
+      redirect_to root_path, alert: "この商品は既に売却済みです。"
+    end
   end
 end

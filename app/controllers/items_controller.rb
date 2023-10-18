@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :find_item, only: [:show, :edit, :update, :destroy]
   before_action :check_seller, only: [:edit, :update, :destroy]
+  before_action :set_item, only: [:edit, :update]
 
   def index
     @items = Item.order(:created_at)
@@ -24,11 +25,15 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    if @item.order.present? || current_user != @item.user
+      # 商品が売却済みまたは出品者ではない場合
+      redirect_to root_path, alert: "この商品は編集できません。"
+    end
   end
 
   def update
     if @item.update(item_params)
-      redirect_to item_path
+      redirect_to item_path, notice:
     else
       render :edit, status: :unprocessable_entity
     end
@@ -53,5 +58,9 @@ class ItemsController < ApplicationController
     unless @item.user. == current_user
       redirect_to root_path, alert: "出品者以外のユーザーはアクセスできません。"
     end
+  end
+
+  def set_item
+    @item = Item.find(params[:id])
   end
 end
