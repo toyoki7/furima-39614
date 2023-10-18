@@ -1,5 +1,6 @@
 FactoryBot.define do
   factory :order_integration do
+
     postcode { '123-4567' }
     prefecture_id { '2' }
     municipality { '東松山市' }

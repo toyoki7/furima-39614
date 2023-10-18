@@ -14,7 +14,7 @@ class OrderIntegration
   end
   
   def save
-    order = Order.create(user_id: user_id, item_id: item_id)
+    order = Order.create(user_id: user_id, item_id: item_id, order_id: order.id)
 
     Shipping.create(postcode: postcode, prefecture_id: prefecture_id, municipality: municipality, address: address, building: building, phone: phone, order: order)
   end
