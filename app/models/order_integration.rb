@@ -1,6 +1,6 @@
 class OrderIntegration
   include ActiveModel::Model
-  attr_accessor :user_id, :item_id, :postcode, :prefecture_id, :municipality, :address, :building, :phone, :order, :token
+  attr_accessor :user_id, :item_id, :postcode, :prefecture_id, :municipality, :address, :building, :phone, :token
 
   with_options presence: true do
     validates :user_id
